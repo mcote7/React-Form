@@ -102,7 +102,7 @@ const UserForm = (props) => {
             <div className="formcontainer">
                 <div className="inputcontainer">
                     <label>First name &bull; &nbsp; </label>
-                    <input type="text" onChange={handlefirstName} /> <br/>
+                    <input spellCheck= "false" type="text" onChange={handlefirstName} /> <br/>
                     {
                         firstNameError ?
                         <span style={{color:'red'}}>{ firstNameError }</span> :
@@ -111,7 +111,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>Last name &bull; &nbsp; </label>
-                    <input type="text" onChange={handlelastName} /> <br/>
+                    <input spellCheck= "false" type="text" onChange={handlelastName} /> <br/>
                     {
                         lastNameError ?
                         <span style={{color:'red'}}>{ lastNameError }</span> :
@@ -120,7 +120,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>email Address &bull; &nbsp; </label>
-                    <input type="text" onChange={handleEmail} /> <br/>
+                    <input spellCheck= "false" type="text" onChange={handleEmail} /> <br/>
                     {
                         emailError ?
                         <span style={{color:'red'}}>{ emailError }</span> :
