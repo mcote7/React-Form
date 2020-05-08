@@ -42,15 +42,13 @@ const UserForm = (props) => {
     };
 
     const handleEmail = (e) => {
+        const emailRegex = /^\S+@\S+\.\S+$/;
         setEmail(e.target.value);
-            if(e.target.value.length < 1) {
-                setEmailError("Email is required.");
-            } 
-            else if(e.target.value.length < 5) {
-                setEmailError("Email must be 5 characters or longer.");
-            }
-            else if (e.target.value.length > 5) {
-                setEmailError("");
+        if (e.target.value.match(emailRegex)) {
+            setEmailError("");
+        }
+        else if(e.target.value) {
+                setEmailError("Valid Email is required!");
             }
     };
 
@@ -84,7 +82,7 @@ const UserForm = (props) => {
         console.log("Welcome", newUser);
         setHasBeenSubmited( true );
     };
-// fixed message
+
     const formMessage = () => {
         if( hasBeenSubmited ) {
             return (
@@ -122,7 +120,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>email Address &bull; &nbsp; </label>
-                    <input type="email" onChange={handleEmail} /> <br/>
+                    <input type="text" onChange={handleEmail} /> <br/>
                     {
                         emailError ?
                         <span style={{color:'red'}}>{ emailError }</span> :
