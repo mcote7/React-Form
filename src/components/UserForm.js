@@ -1,30 +1,96 @@
 import React, { useState } from  'react';
-// import {render} from 'react-dom';
 
 
 const UserForm = (props) => {
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmpass, setConfirmpass] = useState("");
-    const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
+    const [hasBeenSubmited, setHasBeenSubmited] = useState(false);
+    const [firstNameError, setFirstNameError] = useState("");
+    const [lastNameError, setLastNameError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [confirmPassError, setConfirmPassError] = useState("");
 
-    const userString = `${firstname} ${lastname}`;
+    const userString = `${firstName} ${lastName}`;
+//<------------------------------------------------------------------------validations------------------------------<<<<<<<
+    const handlefirstName = (e) => {
+        setFirstName(e.target.value);
+            if(e.target.value.length < 1) {
+                setFirstNameError("Name is required.");
+            } 
+            else if(e.target.value.length < 2) {
+                setFirstNameError("Name must be 2 characters or longer.");
+            }
+            else if (e.target.value.length > 2) {
+                setFirstNameError("");
+            }
+    };
+
+    const handlelastName = (e) => {
+        setLastName(e.target.value);
+            if(e.target.value.length < 1) {
+                setLastNameError("Name is required.");
+            } 
+            else if(e.target.value.length < 2) {
+                setLastNameError("Name must be 2 characters or longer.");
+            }
+            else if (e.target.value.length > 2) {
+                setLastNameError("");
+            }
+    };
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+            if(e.target.value.length < 1) {
+                setEmailError("Email is required.");
+            } 
+            else if(e.target.value.length < 5) {
+                setEmailError("Email must be 5 characters or longer.");
+            }
+            else if (e.target.value.length > 5) {
+                setEmailError("");
+            }
+    };
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+            if(e.target.value.length < 1) {
+                setPasswordError("Password is required.");
+            } 
+            else if(e.target.value.length < 7) {
+                setPasswordError("Password must be 7 characters or longer.");
+            }
+            else if (e.target.value.length > 7) {
+                setPasswordError("");
+            }
+    };
+
+    const handleConfirmPass = (e) => {
+        if( e.target.value !== password) {
+            setConfirmPassError("Passwords must match.")
+        }
+        else if( e.target.value === password) {
+            setConfirmPassError("");
+        }
+    };
+
+//<---------------------------------------------------------------------------------------------------------<<<<<<<
 
     const createUser = (e) => {
         e.preventDefault();
-        const newUser = { firstname, lastname, email, password, confirmpass };
+        const newUser = { firstName, lastName, email, password};
         console.log("Welcome", newUser);
-        setHasBeenSubmitted( true );
+        setHasBeenSubmited( true );
     };
     const formMessage = () => {
-        if( hasBeenSubmitted ) {
+        if( hasBeenSubmited ) {
             return (
             <div className="row">
-                <div className="formcontainer">
+                <div className="formcontainer2">
                     <div className="inputcontainer">
-                        <div className="outputcontainer"> &bull; Thank you, {firstname} !</div>
+                        <div className="outputcontainer"> &hearts; Thank you, {firstName} .</div>
                     </div>
                 </div>
             </div>
@@ -33,36 +99,61 @@ const UserForm = (props) => {
     };
     return(
         <>
-        {formMessage()}
         <form onSubmit={ createUser }>
             <div className="formcontainer">
                 <div className="inputcontainer">
                     <label>First name &bull; &nbsp; </label>
-                    <input type="text" onChange={ (e) => setFirstname(e.target.value) } />
+                    <input type="text" onChange={handlefirstName} /> <br/>
+                    {
+                        firstNameError ?
+                        <span style={{color:'red'}}>{ firstNameError }</span> :
+                        ''
+                    }
                 </div>
                 <div className="inputcontainer">
                     <label>Last name &bull; &nbsp; </label>
-                    <input type="text" onChange={ (e) => setLastname(e.target.value) } />
+                    <input type="text" onChange={handlelastName} /> <br/>
+                    {
+                        lastNameError ?
+                        <span style={{color:'red'}}>{ lastNameError }</span> :
+                        ''
+                    }
                 </div>
                 <div className="inputcontainer">
-                    <label>Email Address &bull; &nbsp; </label>
-                    <input type="text" onChange={ (e) => setEmail(e.target.value) } />
+                    <label>email Address &bull; &nbsp; </label>
+                    <input type="email" onChange={handleEmail} /> <br/>
+                    {
+                        emailError ?
+                        <span style={{color:'red'}}>{ emailError }</span> :
+                        ''
+                    }
                 </div>
                 <div className="inputcontainer">
-                    <label>Password &bull; &nbsp; </label>
-                    <input type="password" onChange={ (e) => setPassword(e.target.value) } />
+                    <label>password &bull; &nbsp; </label>
+                    <input type="password" onChange={handlePassword} /> <br/>
+                    {
+                        passwordError ?
+                        <span style={{color:'red'}}>{ passwordError }</span> :
+                        ''
+                    }
                 </div>
                 <div className="inputcontainer">
-                    <label>Confirm Password &bull; &nbsp; </label>
-                    <input type="password" onChange={ (e) => setConfirmpass(e.target.value) } />
+                    <label>Confirm password &bull; &nbsp; </label>
+                    <input type="password" onChange={handleConfirmPass} /> <br/>
+                    {
+                        confirmPassError ?
+                        <span style={{color:'red'}}>{ confirmPassError }</span> :
+                        ''
+                    }
                 </div>
                 <div className="row">
                     <button type="submit" value="createUser" className="btncote">SUBMIT</button>
                 </div>
             </div>
         </form>
+        {formMessage()}
         <div className="row">
-            <div className="formcontainer">
+            <div className="formcontainer2">
                 <div className="inputcontainer">
                     <div className="outputcontainer"> &bull; User info &bull; <hr/> {userString} <hr/> {email}  <hr/> </div>
                 </div>

@@ -10,7 +10,7 @@ body{
 }
 .row {
   margin: 10px;
-  display: inline-block;
+  display: inline-flex;
 }
 /* ---------------------react background image color: skyblue----------*/
 .bgimage {
@@ -70,10 +70,17 @@ input:focus {
 }
 /* --------------------------------------------------------------------- */
 /* -----------------output container read only-------------------------- */
+.formcontainer2 {
+  margin: 10px;
+  display: inline-block;
+  border: solid lightgray;
+  border-radius: 12px;
+  background-color: rgb(59, 59, 85);
+}
 .outputcontainer {
   text-align: center;
   background-color: rgb(159, 225, 252);
-  border: solid;
+  border: solid 4px;
   border-style: inset;
   border-radius: 8px;
   padding: 5px 10px;
@@ -88,6 +95,6 @@ input:focus {
         rgb(59, 59, 85)=dark contrast
 
         skyblue= react original
-        (blue for inputs)=rgb(159, 225, 252);
+        (skyliteblue for inputs)=rgb(159, 225, 252);
 
 */
