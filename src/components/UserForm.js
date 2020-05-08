@@ -2,36 +2,38 @@ import React, { useState } from  'react';
 // import {render} from 'react-dom';
 
 
-
 const UserForm = (props) => {
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpass, setConfirmpass] = useState("");
-      
+    const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
+
     const userString = `${firstname} ${lastname}`;
 
-    const helloUser = (event) => {
-        return (
-            <>
-            <div className="row">
-            <div className="formcontainer">
-                <div className="inputcontainer">
-                    <div className="outputcontainer">&bull; Hello, {firstname} welcome to react! &bull;</div>
-                </div>
-            </div>
-        </div>
-        </>
-        );
-    };
     const createUser = (e) => {
         e.preventDefault();
         const newUser = { firstname, lastname, email, password, confirmpass };
         console.log("Welcome", newUser);
+        setHasBeenSubmitted( true );
     };
+    const formMessage = () => {
+        if( hasBeenSubmitted ) {
+            return (
+            <div className="row">
+                <div className="formcontainer">
+                    <div className="inputcontainer">
+                        <div className="outputcontainer"> &bull; Thank you, {firstname} !</div>
+                    </div>
+                </div>
+            </div>
+            );
+        }
+    };
     return(
-    <>
+        <>
+        {formMessage()}
         <form onSubmit={ createUser }>
             <div className="formcontainer">
                 <div className="inputcontainer">
@@ -55,19 +57,19 @@ const UserForm = (props) => {
                     <input type="password" onChange={ (e) => setConfirmpass(e.target.value) } />
                 </div>
                 <div className="row">
-                    <button type="submit" value="createUser" className="btncote" onClick={ (event) => helloUser()}>SUBMIT</button>
+                    <button type="submit" value="createUser" className="btncote">SUBMIT</button>
                 </div>
             </div>
         </form>
-        <br/>
-        <br/>
         <div className="row">
             <div className="formcontainer">
                 <div className="inputcontainer">
-                    <div className="outputcontainer">&bull; User info &bull; <br/> {userString} <br/> {email} </div>
+                    <div className="outputcontainer"> &bull; User info &bull; <hr/> {userString} <hr/> {email}  <hr/> </div>
                 </div>
             </div>
         </div>
+        <br/>
+        <br/>
         </>
         );
     };
