@@ -14,6 +14,7 @@ const UserForm = (props) => {
 
     const helloUser = (event) => {
         return (
+            <>
             <div className="row">
             <div className="formcontainer">
                 <div className="inputcontainer">
@@ -21,6 +22,7 @@ const UserForm = (props) => {
                 </div>
             </div>
         </div>
+        </>
         );
     };
     const createUser = (e) => {
