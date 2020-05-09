@@ -46,6 +46,7 @@ input {
   border-radius: 8px;
   padding-left: 8px;
   padding-right: 8px;
+  caret-color : black;
 }
 input:focus {
   outline: none;

@@ -1,6 +1,5 @@
 import React, { useState } from  'react';
 
-
 const UserForm = (props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -18,10 +17,15 @@ const UserForm = (props) => {
     const handlefirstName = (e) => {
         setFirstName(e.target.value);
             if(e.target.value.length < 1) {
-                setFirstNameError("Name is required.");
+                setFirstNameError("Name is required .");
             } 
             else if(e.target.value.length < 2) {
-                setFirstNameError("Name must be 2 characters or longer.");
+                setFirstNameError("Name must be 2 characters or longer .");
+            }
+            else if (e.target.value.length > 18) {
+                setFirstNameError("Name too long .");
+                e.target.value = "";
+                setFirstName(e.target.value);
             }
             else if (e.target.value.length > 2) {
                 setFirstNameError("");
@@ -31,10 +35,15 @@ const UserForm = (props) => {
     const handlelastName = (e) => {
         setLastName(e.target.value);
             if(e.target.value.length < 1) {
-                setLastNameError("Name is required.");
+                setLastNameError("Name is required .");
             } 
             else if(e.target.value.length < 2) {
-                setLastNameError("Name must be 2 characters or longer.");
+                setLastNameError("Name must be 2 characters or longer .");
+            }
+            else if (e.target.value.length > 18) {
+                setLastNameError("Name too long .");
+                e.target.value = "";
+                setLastName(e.target.value);
             }
             else if (e.target.value.length > 2) {
                 setLastNameError("");
@@ -55,10 +64,10 @@ const UserForm = (props) => {
     const handlePassword = (e) => {
         setPassword(e.target.value);
             if(e.target.value.length < 1) {
-                setPasswordError("Password is required.");
+                setPasswordError("Password is required .");
             } 
             else if(e.target.value.length < 7) {
-                setPasswordError("Password must be 7 characters or longer.");
+                setPasswordError("Password must be 7 characters or longer .");
             }
             else if (e.target.value.length > 7) {
                 setPasswordError("");
@@ -67,7 +76,7 @@ const UserForm = (props) => {
 
     const handleConfirmPass = (e) => {
         if( e.target.value !== password) {
-            setConfirmPassError("Passwords must match.")
+            setConfirmPassError("Passwords must match .")
         }
         else if( e.target.value === password) {
             setConfirmPassError("");
@@ -98,6 +107,12 @@ const UserForm = (props) => {
     };
     return(
         <>
+        <div style={{float: "left"}}>
+            {formMessage()}
+        </div>
+        <div style={{float: "right", filter: "blur(1000px)"}}>
+            {formMessage()}
+        </div>
         <form onSubmit={ createUser }>
             <div className="formcontainer">
                 <div className="inputcontainer">
@@ -150,7 +165,6 @@ const UserForm = (props) => {
                 </div>
             </div>
         </form>
-        {formMessage()}
         <div className="row">
             <div className="formcontainer2">
                 <div className="inputcontainer">
