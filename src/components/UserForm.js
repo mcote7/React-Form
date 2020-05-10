@@ -53,7 +53,10 @@ const UserForm = (props) => {
     const handleEmail = (e) => {
         const emailRegex = /^\S+@\S+\.\S+$/;
         setEmail(e.target.value);
-        if (e.target.value.match(emailRegex)) {
+        if(e.target.value.length < 1) {
+            setEmailError("Email is required .");
+        } 
+        else if (e.target.value.match(emailRegex)) {
             setEmailError("");
         }
         else if(e.target.value) {
@@ -88,8 +91,13 @@ const UserForm = (props) => {
     const createUser = (e) => {
         e.preventDefault();
         const newUser = { firstName, lastName, email, password};
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setPassword(password);
         console.log("Welcome", newUser);
         setHasBeenSubmited( true );
+
     };
 
     const formMessage = () => {
@@ -117,7 +125,7 @@ const UserForm = (props) => {
             <div className="formcontainer">
                 <div className="inputcontainer">
                     <label>First name &bull; &nbsp; </label>
-                    <input spellCheck= "false" type="text" onChange={handlefirstName} /> <br/>
+                    <input required placeholder="First name . . ."spellCheck= "false" type="text" onChange={handlefirstName} /> <br/>
                     {
                         firstNameError ?
                         <span style={{color:'red'}}>{ firstNameError }</span> :
@@ -126,7 +134,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>Last name &bull; &nbsp; </label>
-                    <input spellCheck= "false" type="text" onChange={handlelastName} /> <br/>
+                    <input required placeholder="Last name . . ." spellCheck= "false" type="text" onChange={handlelastName} /> <br/>
                     {
                         lastNameError ?
                         <span style={{color:'red'}}>{ lastNameError }</span> :
@@ -135,7 +143,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>email Address &bull; &nbsp; </label>
-                    <input spellCheck= "false" type="text" onChange={handleEmail} /> <br/>
+                    <input required placeholder="Email ( Valid ) . . ." spellCheck= "false" type="text" onChange={handleEmail} /> <br/>
                     {
                         emailError ?
                         <span style={{color:'red'}}>{ emailError }</span> :
@@ -144,7 +152,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>password &bull; &nbsp; </label>
-                    <input type="password" onChange={handlePassword} /> <br/>
+                    <input required placeholder="password . . ." type="password" onChange={handlePassword} /> <br/>
                     {
                         passwordError ?
                         <span style={{color:'red'}}>{ passwordError }</span> :
@@ -153,7 +161,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>Confirm password &bull; &nbsp; </label>
-                    <input type="password" onChange={handleConfirmPass} /> <br/>
+                    <input required placeholder="Confirm password . . ." type="password" onChange={handleConfirmPass} /> <br/>
                     {
                         confirmPassError ?
                         <span style={{color:'red'}}>{ confirmPassError }</span> :

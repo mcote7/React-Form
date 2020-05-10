@@ -52,6 +52,10 @@ input:focus {
   outline: none;
   background-color:rgb(159, 225, 252);
 }
+input::placeholder {
+  font-size: x-small;
+  color: lightslategrey;
+}
 /* ------------------------------------------------------------------- */
 /* ---------------------Cote Button----------------------------------- */
 .btncote {
