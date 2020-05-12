@@ -16,20 +16,19 @@ const UserForm = (props) => {
 //<------------------------------------------------------------------------validations------------------------------<<<<<<<
     const handlefirstName = (e) => {
         setFirstName(e.target.value);
-            if(e.target.value.length < 1) {
-                setFirstNameError("Name is required .");
-            } 
-            else if(e.target.value.length < 2) {
-                setFirstNameError("Name must be 2 characters or longer .");
-            }
-            else if (e.target.value.length > 18) {
-                setFirstNameError("Name too long .");
-                e.target.value = "";
-                setFirstName(e.target.value);
-            }
-            else if (e.target.value.length > 2) {
-                setFirstNameError("");
-            }
+        if(e.target.value.length < 1) {
+            setFirstNameError("Name is required .");
+        } 
+        else if(e.target.value.length < 2) {
+            setFirstNameError("Name must be 2 characters or longer .");
+        }
+        else if (e.target.value.length > 18) {
+            setFirstNameError("Name too long .");
+            e.target.value = "";
+        }
+        else if (e.target.value.length > 2) {
+            setFirstNameError("");
+        }
     };
 
     const handlelastName = (e) => {
@@ -43,7 +42,6 @@ const UserForm = (props) => {
             else if (e.target.value.length > 18) {
                 setLastNameError("Name too long .");
                 e.target.value = "";
-                setLastName(e.target.value);
             }
             else if (e.target.value.length > 2) {
                 setLastNameError("");
@@ -97,7 +95,6 @@ const UserForm = (props) => {
         setPassword(password);
         console.log("Welcome", newUser);
         setHasBeenSubmited( true );
-
     };
 
     const formMessage = () => {
@@ -134,7 +131,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>Last name &bull; &nbsp; </label>
-                    <input required placeholder="Last name . . ." spellCheck= "false" type="text" onChange={handlelastName} /> <br/>
+                    <input placeholder="Last name . . ." spellCheck= "false" type="text" onChange={handlelastName} /> <br/>
                     {
                         lastNameError ?
                         <span style={{color:'red'}}>{ lastNameError }</span> :
@@ -143,7 +140,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>email Address &bull; &nbsp; </label>
-                    <input required placeholder="Email ( Valid ) . . ." spellCheck= "false" type="text" onChange={handleEmail} /> <br/>
+                    <input placeholder="Email ( Valid ) . . ." spellCheck= "false" type="text" onChange={handleEmail} /> <br/>
                     {
                         emailError ?
                         <span style={{color:'red'}}>{ emailError }</span> :
@@ -152,7 +149,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>password &bull; &nbsp; </label>
-                    <input required placeholder="password . . ." type="password" onChange={handlePassword} /> <br/>
+                    <input placeholder="password . . ." type="password" onChange={handlePassword} /> <br/>
                     {
                         passwordError ?
                         <span style={{color:'red'}}>{ passwordError }</span> :
@@ -161,7 +158,7 @@ const UserForm = (props) => {
                 </div>
                 <div className="inputcontainer">
                     <label>Confirm password &bull; &nbsp; </label>
-                    <input required placeholder="Confirm password . . ." type="password" onChange={handleConfirmPass} /> <br/>
+                    <input placeholder="Confirm password . . ." type="password" onChange={handleConfirmPass} /> <br/>
                     {
                         confirmPassError ?
                         <span style={{color:'red'}}>{ confirmPassError }</span> :
