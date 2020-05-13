@@ -96,7 +96,7 @@ const UserForm = (props) => {
         console.log("Welcome", newUser);
         setHasBeenSubmited( true );
     };
-
+//<---------------------------------------------------------------------------------------------------------<<<<<<<
     const formMessage = () => {
         if( hasBeenSubmited ) {
             return (
