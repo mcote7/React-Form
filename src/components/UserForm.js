@@ -88,13 +88,21 @@ const UserForm = (props) => {
 
     const createUser = (e) => {
         e.preventDefault();
-        const newUser = { firstName, lastName, email, password};
+        if(firstNameError || lastNameError || emailError || passwordError || confirmPassError) {
+            setFirstName("please enter valid . . .");
+            setLastName("please enter valid . . .");
+            setEmail("please enter valid . . .");
+            setPassword("please enter valid . . .");
+        }
+        else {
+        const newUser = { firstName, lastName, email, password };
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
         setPassword(password);
         console.log("Welcome", newUser);
         setHasBeenSubmited( true );
+        }
     };
 //<---------------------------------------------------------------------------------------------------------<<<<<<<
     const formMessage = () => {
@@ -122,7 +130,7 @@ const UserForm = (props) => {
             <div className="formcontainer">
                 <div className="inputcontainer">
                     <label>First name &bull; &nbsp; </label>
-                    <input required placeholder="First name . . ."spellCheck= "false" type="text" onChange={handlefirstName} /> <br/>
+                    <input required placeholder="First name . . ." spellCheck= "false" type="text" onChange={handlefirstName} value={firstName} /> <br/>
                     {
                         firstNameError ?
                         <span style={{color:'red'}}>{ firstNameError }</span> :
